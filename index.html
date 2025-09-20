@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8"
+  <title>Goldenboy Haircuts</title>
+ <meta name="description"content="melhor Batbearia de Dona Catarina">
+ <style>
+   h1 {
+     color: cadetblue;
+     font-size: 50px;
+   }
+   h3 {
+     color: skyblue;
+   }
+ </style>
+  </head>
+  <body>
+    <header>
+      <h1>Central de agendamento</h1>
+      <h3>aqui serão preenchidas suas informações sobre o agendamento <br> e clicando no texto enviar, você será encaminhado para o Whatsapp!</h3>
+    </header>
+    <main>
+      <!--catalogo de imagens👍-->
+      <section>
+        <h3>catalogo de cortes!</h3>
+        <img src="https://i.postimg.cc/MKQjzQMs/de988408-5610-412f-a317-b286c0547c71.jpg">
+        <p> um de nossos clientes satisfeitos</p>
+        <img src="https://i.postimg.cc/4xRHyxpX/4efdeb02-d49d-4907-afbe-6a732f3d02e5.jpg">
+
+      
+      <section>
+        
+        <br>
+        <br>
+        <p> preencha seus dados</p>
+      </section>
+      <section>
+      
+          <form>
+            <label>Telefone:</label>
+            <input type="text" id="telefone" required><br><br>
+          </form>
+        </section>
+<form action="https://api.sheetmonkey.io/form/nz94UCk2kznT5FPtyppJQn" method="post"> 
+id=" formAgendamento">
+<label>Nome: </label>
+<input type="text" id="nome"
+required><br><br>
+<label>Data: </label>
+<input type="date" id="data"
+required><br><br>
+<label>Horário:</label>
+<select type="time" id="hora" required>
+  <option value="10:00">10:00</option>
+  <
+</select>
+
+<label>Serviço:</label>
+<select id="servico" required>
+<option value=""›Selecione‹/option>
+<option value="Corte de cabelo">Corte de cabelo</option>
+<option value="Manicure">Manicure</option>
+<option value="Massagem">Massagem</option>
+</select><br><br>
+<button type="button"
+id="btnWhats">Agendar pelo WhatsApp</button>
+</form>
+<script type="text/javascript" charset="utf-8">
+  document.getElementById("btnWhats").onclick = async function() {
+    const nome = document.getElementById("nome").value;
+    const data = document.getElementById("data").value;
+    const servico = document.getElementById("servico").value;
+    const hora = document.getElementById("hora").value;
+    const telefone = document.getElementById("telefone").value;
+    
+    // Mensagem do WhatsApp
+    const mensagem = `Olá, meu nome é ${nome}. Gostaria de agendar ${servico} para a data ${data} às ${hora}. Meu número é ${telefone}.`;
+    const texto = encodeURIComponent(mensagem);
+    const numero = "5511950553217";
+    const urlWhats = `https://wa.me/${numero}?text=${texto}`;
+    
+    // Tenta salvar no Google Sheets (Apps Script)
+    fetch("https://script.google.com/macros/s/SEU_ID_AQUI/exec", {
+        method: "POST",
+        body: JSON.stringify({ nome, data, servico, hora, telefone }),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(response => response.json())
+      .then(resultado => {
+        console.log("✅ Resultado do Apps Script:", resultado);
+        if (resultado.status !== "ok") alert("⚠️ " + resultado.mensagem);
+      })
+      .catch(erro => {
+        console.error("Erro ao salvar no Apps Script:", erro);
+      })
+      .finally(() => {
+        // Abre o WhatsApp mesmo se houver erro
+        window.location.href = urlWhats;
+      });
+  };
+</script>
+      </section>
+    </main>
+    <footer>
+      <p>Goldenboy Haircuts. Todos os direitos reservados</p>
+    </footer>
+  </body>
+  
+</html>

@@ -33,6 +33,14 @@
         <br>
         <br>
         <p> preencha seus dados</p>
+      </section>
+      <section>
+      
+          <form>
+            <label>Telefone:</label>
+            <input type="text" id="telefone" required><br><br>
+          </form>
+        </section>
 <form
 id=" formAgendamento">
 <label>Nome: </label>
@@ -57,25 +65,38 @@ required><br><br>
 <button type="button"
 id="btnWhats">Agendar pelo WhatsApp</button>
 </form>
-<script>
-  document.getElementById("btnWhats").onclick = function() {
-    // Pega os valores do formulário
+<script type="text/javascript" charset="utf-8">
+  document.getElementById("btnWhats").onclick = async function() {
     const nome = document.getElementById("nome").value;
     const data = document.getElementById("data").value;
     const servico = document.getElementById("servico").value;
     const hora = document.getElementById("hora").value;
+    const telefone = document.getElementById("telefone").value;
     
-    // Monta a mensagem
-    const mensagem = `Olá, meu nome é ${nome}. Gostaria de agendar ${servico} para a data ${data}.`;
-    
-    // Codifica para URL
+    // Mensagem do WhatsApp
+    const mensagem = `Olá, meu nome é ${nome}. Gostaria de agendar ${servico} para a data ${data} às ${hora}. Meu número é ${telefone}.`;
     const texto = encodeURIComponent(mensagem);
-    
-    // Número do WhatsApp (formato: 55 + DDD + número)
     const numero = "5511950553217";
+    const urlWhats = `https://wa.me/${numero}?text=${texto}`;
     
-    // Redireciona para o WhatsApp
-    window.location.href = `https://wa.me/${numero}?text=${texto}`;
+    // Tenta salvar no Google Sheets (Apps Script)
+    fetch("https://script.google.com/macros/s/SEU_ID_AQUI/exec", {
+        method: "POST",
+        body: JSON.stringify({ nome, data, servico, hora, telefone }),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(response => response.json())
+      .then(resultado => {
+        console.log("✅ Resultado do Apps Script:", resultado);
+        if (resultado.status !== "ok") alert("⚠️ " + resultado.mensagem);
+      })
+      .catch(erro => {
+        console.error("Erro ao salvar no Apps Script:", erro);
+      })
+      .finally(() => {
+        // Abre o WhatsApp mesmo se houver erro
+        window.location.href = urlWhats;
+      });
   };
 </script>
       </section>

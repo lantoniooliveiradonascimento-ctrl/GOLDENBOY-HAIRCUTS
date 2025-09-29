@@ -1,0 +1,91 @@
+/* Estilos gerais do corpo da página para um fundo escuro */
+body {
+    background-color: #121212; /* Preto de fundo */
+    color: #e5d392; /* Cor de texto dourada */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column; /* Coloca os elementos em coluna */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Estilo para o campo de entrada de data (input type="date") */
+input[type="date"] {
+    width: 300px; /* Largura igual aos inputs anteriores */
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #1a1a1a; /* Fundo preto mais claro */
+    border: 1px solid #444; /* Borda cinza escura */
+    border-radius: 8px;
+    color: #fff; /* Cor do texto digitado */
+    font-size: 1em;
+    cursor: pointer;
+    box-sizing: border-box; /* Garante que padding não afete a largura total */
+    appearance: none; /* Remove o estilo padrão do navegador */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Estilo para a caixa de seleção de horário (select) */
+#hora {
+    width: 300px; /* Largura igual aos inputs anteriores */
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #1a1a1a; /* Fundo preto mais claro */
+    border: 1px solid #444; /* Borda cinza escura */
+    border-radius: 8px;
+    color: #fff; /* Cor do texto selecionado */
+    font-size: 1em;
+    cursor: pointer;
+    appearance: none; /* Remove o estilo padrão do navegador */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="%23e5d392" d="M8 12.5l-6-6h12z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para as opções dentro do select */
+#hora option {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px;
+}
+
+/* Foco nos campos de entrada e seleção */
+input[type="date"]:focus,
+#hora:focus {
+    outline: none;
+    border-color: #e5d392; /* Borda dourada ao focar */
+}
+
+/* Estilos para os botões "Voltar" e "Próximo" */
+button {
+    padding: 15px 30px;
+    background-color: #e5d392; /* Fundo do botão dourado */
+    color: #121212; /* Cor do texto do botão preta */
+    border: none;
+    border-radius: 50px; /* Botão bem arredondado */
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin: 0 10px; /* Espaço entre os botões */
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+button:hover {
+    background-color: #f0e68c; /* Dourado mais claro */
+    transform: translateY(-2px);
+}
+
+/* Efeito ao clicar no botão */
+button:active {
+    background-color: #d4c06e; /* Dourado mais escuro */
+    transform: translateY(0);
+}

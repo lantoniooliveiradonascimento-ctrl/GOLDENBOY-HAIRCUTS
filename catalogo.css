@@ -1,0 +1,105 @@
+/* Estilos gerais do corpo da página */
+body {
+    background-color: #121212; /* Fundo preto escuro */
+    color: #e5d392; /* Cor de texto dourada */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box; /* Garante que padding não afete a largura total */
+}
+
+/* Estilo para o cabeçalho */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #f0e68c; /* Dourado mais claro para o destaque */
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #e5d392; /* Dourado */
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Container principal para as imagens do catálogo */
+.catalogo-container {
+    display: flex;
+    flex-direction: column; /* Para empilhar as imagens */
+    align-items: center;
+    gap: 40px; /* Espaço entre cada item do catálogo */
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Estilo para cada item do catálogo (imagem + legenda) */
+.catalogo-item {
+    background-color: #1a1a1a; /* Fundo preto mais claro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra para profundidade */
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.catalogo-item:hover {
+    transform: translateY(-5px); /* Leve efeito de "elevação" ao passar o mouse */
+}
+
+/* Estilo das imagens */
+.catalogo-item img {
+    width: 100%; /* A imagem ocupa 100% do container */
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #e5d392; /* Borda dourada para destaque */
+    object-fit: cover;
+}
+
+/* Estilo para as legendas das imagens */
+.catalogo-item p {
+    font-style: italic;
+    color: #bbb; /* Cinza claro para a legenda */
+    margin-top: 15px;
+    font-size: 1em;
+}
+
+/* Botão de retorno ao início */
+.voltar-btn {
+    margin-top: 40px;
+    padding: 15px 30px;
+    background-color: #e5d392;
+    color: #121212;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.voltar-btn:hover {
+    background-color: #f0e68c;
+    transform: translateY(-2px);
+}
+
+.voltar-btn:active {
+    background-color: #d4c06e;
+    transform: translateY(0);
+}

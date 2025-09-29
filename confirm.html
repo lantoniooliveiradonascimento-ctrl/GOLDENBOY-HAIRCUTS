@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resumo do Agendamento</title>
+  <link rel="stylesheet" href="confirm.css"
+</head>
+
+<body>
+  <h3>Aqui todos os seus dados serão enviados para o barbeiro!</h3>
+  <div id="resumo"></div>
+  <button onclick="editar()">Editar</button>
+  <button onclick="enviar()">Enviar e abrir WhatsApp</button>
+
+<script>
+function editar() { 
+  window.location.href = 'nome.html'; 
+}
+
+async function enviar() {
+  // Recupera todos os dados do sessionStorage
+  const nome = sessionStorage.getItem('nome');
+  const telefone = sessionStorage.getItem('telefone');
+  const servico = sessionStorage.getItem('servico');
+  const data = sessionStorage.getItem('data');
+  const hora = sessionStorage.getItem('hora');
+
+  const sheetUrl = 'https://api.sheetmonkey.io/form/seuIDaqui';
+
+  try {
+    // 1️⃣ Pega todos os agendamentos existentes
+    const response = await fetch(sheetUrl);
+    const agendamentos = await response.json();
+
+    // 2️⃣ Checa se já existe esse horário
+    const ocupado = agendamentos.some(a => a.data === data && a.hora === hora);
+
+    if (ocupado) {
+      alert('O horário selecionado já está ocupado! Escolha outro.');
+      return; // Para a execução se o horário estiver ocupado
+    }
+
+    // 3️⃣ Se não estiver ocupado, envia para SheetMonkey
+    const payload = { nome, telefone, servico, data, hora };
+    await fetch(sheetUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    // 4️⃣ Monta e abre o WhatsApp
+    const mensagem = `Olá, meu nome é ${nome}. Gostaria de agendar ${servico} para ${data} às ${hora}. Meu número é ${telefone}.`;
+    const texto = encodeURIComponent(mensagem);
+    const numero = '5511950553217';
+    window.location.href = `https://wa.me/${numero}?text=${texto}`;
+
+    // 5️⃣ Limpa sessionStorage (opcional)
+    sessionStorage.clear();
+
+  } catch (err) {
+    console.error('Erro ao acessar a planilha ou enviar dados:', err);
+    alert('Ocorreu um erro. Tente novamente mais tarde.');
+  }
+}
+
+// Mostra resumo na página
+document.getElementById('resumo').innerHTML = `
+  <p><strong>Nome:</strong> ${sessionStorage.getItem('nome')}</p>
+  <p><strong>Telefone:</strong> ${sessionStorage.getItem('telefone')}</p>
+  <p><strong>Serviço:</strong> ${sessionStorage.getItem('servico')}</p>
+  <p><strong>Data:</strong> ${sessionStorage.getItem('data')}</p>
+  <p><strong>Hora:</strong> ${sessionStorage.getItem('hora')}</p>
+`;
+</script>
+</body>
+</html>

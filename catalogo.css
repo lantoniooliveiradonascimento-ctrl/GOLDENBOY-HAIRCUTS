@@ -1,105 +1,202 @@
-/* Estilos gerais do corpo da página */
-body {
-    background-color: #121212; /* Fundo preto escuro */
-    color: #e5d392; /* Cor de texto dourada */
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* Configurações Estéticas (Paleta Clássica/Luxo - Preto, Dourado e Bege) */
+:root {
+    --cor-principal: #D4AF37; /* Dourado/Ouro (Cor de destaque e botões) */
+    --cor-secundaria: #D4AF37; /* Preto Profundo/Grafite (Texto e rodapé) */
+    --cor-fundo: #333333
+; /* Fundo Creme Suave/Off-white */
+    --cor-acento: #AA6C39; /* Marrom Ouro Velho (Detalhes) */
+    --sombra-card: 0 5px 15px rgba(0, 0, 0, 0.15); /* Sombra mais marcada */
+    --borda-fina: 1px solid rgba(220, 220, 220, 0.7);
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
-    padding: 20px;
-    box-sizing: border-box; /* Garante que padding não afete a largura total */
+    padding: 0;
 }
 
-/* Estilo para o cabeçalho */
-header {
+body {
+    /* Use a fonte da sua página inicial (Ex: 'Georgia' ou 'Playfair Display' para luxo) */
+    font-family: 'Times New Roman', serif; 
+    background-color: var(--cor-fundo);
+    color: var(--cor-secundaria);
+    line-height: 1.6;
+}
+
+/* Header - Estilo limpo e elegante */
+.main-header {
+    background-color: #121212;
+    padding: 30px 20px;
     text-align: center;
-    margin-bottom: 40px;
-    width: 100%;
+    border-bottom: 3px solid var(--cor-principal); /* Linha de destaque dourada */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #f0e68c; /* Dourado mais claro para o destaque */
-    margin-bottom: 5px;
-    text-transform: uppercase;
+.main-header h1 {
+    font-size: 2.8em;
+    color: var(--cor-secundaria);
     letter-spacing: 2px;
-}
-
-h3 {
-    font-size: 1.5em;
-    color: #e5d392; /* Dourado */
-    font-weight: normal;
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-/* Container principal para as imagens do catálogo */
-.catalogo-container {
-    display: flex;
-    flex-direction: column; /* Para empilhar as imagens */
-    align-items: center;
-    gap: 40px; /* Espaço entre cada item do catálogo */
-    width: 100%;
-    max-width: 800px;
+.subtitulo {
+    font-size: 1.2em;
+    color: var(--cor-acento); /* Ouro velho para o subtítulo */
+    margin-top: 10px;
 }
 
-/* Estilo para cada item do catálogo (imagem + legenda) */
-.catalogo-item {
-    background-color: #1a1a1a; /* Fundo preto mais claro */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra para profundidade */
-    width: 100%;
-    max-width: 600px;
-    text-align: center;
-    transition: transform 0.3s ease;
+/* Navegação e Filtros - Botões com borda discreta */
+.filtros-nav {
+    margin-top: 25px;
 }
 
-.catalogo-item:hover {
-    transform: translateY(-5px); /* Leve efeito de "elevação" ao passar o mouse */
+.btn-filtro {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 5px;
+    background-color: transparent;
+    border: var(--borda-fina);
+    color: var(--cor-secundaria);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
-/* Estilo das imagens */
-.catalogo-item img {
-    width: 100%; /* A imagem ocupa 100% do container */
-    height: auto;
-    border-radius: 8px;
-    border: 2px solid #e5d392; /* Borda dourada para destaque */
-    object-fit: cover;
-}
-
-/* Estilo para as legendas das imagens */
-.catalogo-item p {
-    font-style: italic;
-    color: #bbb; /* Cinza claro para a legenda */
-    margin-top: 15px;
-    font-size: 1em;
-}
-
-/* Botão de retorno ao início */
-.voltar-btn {
-    margin-top: 40px;
-    padding: 15px 30px;
-    background-color: #e5d392;
+.btn-filtro:hover {
+    background-color: var(--cor-acento);
     color: #121212;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.voltar-btn:hover {
-    background-color: #f0e68c;
+    border-color: var(--cor-acento);
     transform: translateY(-2px);
 }
 
-.voltar-btn:active {
-    background-color: #d4c06e;
-    transform: translateY(0);
+/* Layout da Galeria (GRID) */
+.galeria-cortes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px; 
+    padding: 50px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Estilo do Card de Corte */
+.corte-card {
+    display: block; 
+    background: #121212;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--cor-secundaria);
+    box-shadow: var(--sombra-card);
+    /* Transição suave para o efeito de hover (elevação e sombra) */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    position: relative;
+}
+
+/* Animação e Efeito ao Passar o Mouse (HOVER) */
+.corte-card:hover {
+    transform: translateY(-12px) scale(1.02); /* Elevação mais perceptível */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); /* Sombra mais dramática */
+}
+
+/* Imagem do Corte */
+.corte-imagem-container {
+    overflow: hidden;
+    height: 400px; /* Altura generosa para fotos de cabelo */
+}
+
+.corte-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9); /* Imagem levemente mais escura para melhor leitura do texto */
+    transition: transform 0.6s ease-out, filter 0.4s ease; 
+}
+
+/* Animação na Imagem no Hover: Zoom Sutil e Brilho total */
+.corte-card:hover .corte-imagem {
+    transform: scale(1.05); 
+    filter: brightness(1); /* Traz o brilho normal */
+}
+
+/* Informações sobre o Corte (Título e Tag) */
+.corte-info {
+    padding: 20px;
+    background-color: #121212;
+    text-align: left;
+    border-top: var(--borda-fina);
+}
+
+.corte-titulo {
+    font-size: 1.4em;
+    margin-bottom: 5px;
+    color: var(--cor-secundaria);
+    text-transform: uppercase;
+}
+
+.corte-tag {
+    font-size: 0.8em;
+    color: var(--cor-principal); /* Tag dourada */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Rodapé - Fundo escuro com texto claro */
+.main-footer {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-fundo); /* Texto em bege/creme */
+    text-align: center;
+    padding: 40px;
+    margin-top: 50px;
+}
+
+.main-footer p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.btn-agendar {
+    display: inline-block;
+    background-color: var(--cor-fundo);
+    color: var(--cor-principal); /* Texto escuro no botão dourado */
+    padding: 15px 35px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-agendar:hover {
+    background-color: #121212; /* Dourado mais suave/escuro no hover */
+   #botaofundo {
+       color: #121212;
+   }
+    color: #121212;
+    transform: scale(1.05)
+}
+
+/* Media Query: Responsividade */
+@media (max-width: 768px) {
+    .galeria-cortes-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+        gap: 20px;
+    }
+    .corte-imagem-container {
+        height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .galeria-cortes-grid {
+        grid-template-columns: 1fr;
+    }
+    .main-header h1 {
+        font-size: 2em;
+    }
 }

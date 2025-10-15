@@ -1,0 +1,107 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="confirm.css">
+  <title>Confirmação de Agendamento</title>
+</head>
+
+<body>
+  <header class="main-header">
+    <h1>Confirmar e Enviar</h1>
+    <p class="subtitulo">Aqui todos os seus dados serão enviados para o barbeiro!</p>
+  </header>
+  
+  <main class="content-wrapper">
+    <section class="confirmacao-card">
+      
+      <div class="icone-sucesso">
+        ⏳
+      </div>
+      
+      <h2 class="mensagem-principal">Revise seu Agendamento</h2>
+      <p class="instrucao-adicional">Se os detalhes estiverem corretos, clique no botão para finalizar.</p>
+      
+      <div id="resumo" class="resumo-detalhes">
+      </div>
+      
+      <div class="botoes-acao">
+        <button onclick="editar()" class="btn-editar">
+          ← Editar Dados
+        </button>
+        
+        <button onclick="enviar()" class="btn-enviar">
+          Enviar e Abrir WhatsApp
+        </button>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="main-footer">
+    <p>Agradecemos a confiança. Esperamos você no horário agendado!</p>
+  </footer>
+  
+  <script>
+    function editar() { window.location.href = 'index.html'; }
+    
+    function enviar() {
+      // Recupera todos os dados
+      const nome = sessionStorage.getItem('nome');
+      const telefone = sessionStorage.getItem('telefone');
+      const servico = sessionStorage.getItem('servico');
+      const data = sessionStorage.getItem('data');
+      const hora = sessionStorage.getItem('hora');
+      
+      // Monta payload para SheetMonkey
+      const payload = { nome, telefone, servico, data, hora };
+      const sheetUrl = 'https://api.sheetmonkey.io/form/nz94UCk2kznT5FPtyppJQn';
+      
+      fetch(sheetUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(err => console.error('Erro ao enviar para SheetMonkey', err));
+      
+      // Monta URL WhatsApp
+      const mensagem = `Olá, meu nome é ${nome}. Gostaria de agendar ${servico} para ${data} às ${hora}. Meu número é ${telefone}.`;
+      const texto = encodeURIComponent(mensagem);
+      const numero = '5511950553217';
+      window.location.href = `https://wa.me/${numero}?text=${texto}`;
+      
+      // Limpa sessionStorage (opcional)
+      // sessionStorage.clear();
+    }
+    
+    // MOSTRA RESUMO NA PÁGINA (USA CLASSES DE ESTILO)
+    document.getElementById('resumo').innerHTML = `
+    
+            <div class="detalhe-item>
+                <span class="detalhe-label">Nome:</spa>
+                <span class="detalhe-valor">${sessionStorage.getItem('nome')}</span>
+            </div>
+            <div class="detalhe-item">
+                <span class="detalhe-label">Telefone:</span>
+                <span class="detalhe-valor">${sessionStorage.getItem('telefone')}</span>
+            </div>
+            <div class="detalhe-item total-item">
+                <span class="detalhe-label">Serviço:</span>
+                <span class="detalhe-valor destaque-principal">${sessionStorage.getItem('servico')}</span>
+            </div>
+            <div class="detalhe-item">
+                <span class="detalhe-label">Data:</span>
+                <span class="detalhe-valor">${sessionStorage.getItem('data')}</span>
+            </div>
+            <div class="detalhe-item">
+                <span class="detalhe-label">Hora:</span>
+                <span class="detalhe-valor destaque-principal">${sessionStorage.getItem('hora')}</span>
+            </div>
+        `;
+  </script>
+  
+</body>
+
+</html>

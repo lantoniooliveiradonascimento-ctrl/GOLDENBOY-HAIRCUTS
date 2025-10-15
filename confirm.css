@@ -1,0 +1,209 @@
+/* ============================================== */
+/* CONFIGURAÇÕES GLOBAIS - PALETA CLÁSSICA/LUXO (PRETO, DOURADO E BEGE) */
+/* ============================================== */
+
+:root {
+    --cor-principal: #D4AF37; /* Dourado/Ouro (Cor de destaque e botões) */
+    --cor-secundaria: #1c1c1c; /* Preto Profundo/Grafite (Texto principal e fundos escuros) */
+    --cor-fundo: #121212; /* Fundo Creme Suave/Off-white */
+    --cor-acento: #D4AF37; /* Marrom Ouro Velho (Detalhes) */
+    --sombra-card: 0 5px 15px rgba(0, 0, 0, 0.15); /* Sombra mais marcada */
+    --borda-fina: 1px solid rgba(220, 220, 220, 0.7);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Use a fonte da sua página inicial (Ex: 'Georgia', 'Playfair Display', ou 'Times New Roman' para o luxo) */
+    font-family: 'arial', serif; 
+    background-color: var(--cor-fundo);
+    color: var(--cor-secundaria);
+    line-height: 1.6;
+}
+
+/* Header - Estilo limpo e elegante */
+.main-header {
+    background-color: #666666;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 3px solid var(--cor-principal); /* Linha de destaque dourada */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-header h1 {
+    font-size: 2.8em;
+    color: var(--cor-secundaria);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.subtitulo {
+    font-size: 1.2em;
+    color: var(--cor-acento); /* Ouro velho para o subtítulo */
+    margin-top: 10px;
+}
+
+/* Rodapé - Fundo escuro com texto claro */
+.main-footer {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-fundo); /* Texto em bege/creme */
+    text-align: center;
+    padding: 40px;
+    margin-top: 50px;
+}
+
+/* ============================================== */
+/* ESTILOS ESPECÍFICOS PARA PÁGINA DE CONFIRMAÇÃO */
+/* ============================================== */
+
+/* Content Wrapper: Centraliza o card na tela */
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: calc(100vh - 200px); 
+}
+
+/* Card Principal de Confirmação */
+.confirmacao-card {
+    background-color: white; /* Fundo branco/creme para o card */
+    color: var(--cor-secundaria);
+    border-radius: 8px;
+    box-shadow: var(--sombra-card);
+    padding: 40px;
+    max-width: 550px;
+    width: 100%;
+    text-align: center;
+    border: var(--borda-fina);
+}
+
+/* Títulos do Card */
+.icone-sucesso {
+    font-size: 4em;
+    color: var(--cor-principal); /* Cor de destaque Dourada */
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.mensagem-principal {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: var(--cor-secundaria);
+}
+
+.instrucao-adicional {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+/* Resumo dos Detalhes (Layout) */
+.resumo-detalhes {
+    text-align: left;
+    margin-bottom: 40px;
+    padding: 15px 0;
+    border-top: 1px dashed #ccc; 
+    border-bottom: 1px dashed #ccc;
+}
+
+.detalhe-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 1.1em;
+    border-bottom: 1px dotted #eee; /* Linha de separação mais sutil */
+}
+
+.detalhe-item:last-child {
+    border-bottom: none;
+}
+
+.detalhe-label {
+    color: var(--cor-acento); /* Ouro velho para a label */
+    font-weight: 500;
+}
+
+.detalhe-valor {
+    color: var(--cor-secundaria);
+    font-weight: bold;
+}
+
+.destaque-principal {
+    color: var(--cor-principal); /* Destaque na cor Dourada */
+}
+
+/* Linha de Total/Serviço Destaque */
+.total-item {
+    font-size: 1.2em;
+    padding: 15px 0;
+    border-top: 2px solid var(--cor-principal); /* Dourado */
+    margin-top: 10px;
+}
+
+/* Botões de Ação */
+.botoes-acao {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Botão Principal: Dourado com Texto Escuro */
+.btn-enviar {
+    flex: 2; /* Dê mais espaço para o botão principal */
+    display: inline-block;
+    background-color: var(--cor-principal);
+    color: var(--cor-secundaria); /* Texto escuro no botão dourado */
+    padding: 15px 10px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-enviar:hover {
+    background-color: var(--cor-acento); /* Ouro velho no hover */
+    color: white;
+    transform: scale(1.02);
+}
+
+/* Botão Secundário: Contorno */
+.btn-editar {
+    flex: 1; /* Ocupa menos espaço */
+    display: inline-block;
+    text-align: center;
+    background-color: transparent;
+    border: 2px solid var(--cor-acento); /* Contorno ouro velho */
+    color: var(--cor-secundaria);
+    padding: 15px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+.btn-editar:hover {
+    background-color: var(--cor-acento);
+    color: #121212;
+}
+
+/* Responsividade do Card */
+@media (max-width: 600px) {
+    .confirmacao-card {
+        margin: 20px 10px;
+        padding: 30px 15px;
+    }
+    .botoes-acao {
+        flex-direction: column; /* Empilha os botões em telas menores */
+    }
+    .btn-enviar, .btn-editar {
+        flex: none;
+    }
+}

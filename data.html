@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escolha Data e Hora | Agendamento</title>
+  <link rel="stylesheet" href="data.css"> 
+  </head>
+
+<body>
+    <header class="main-header">
+        <h1>Escolha seu Horário</h1>
+        <p class="subtitulo">Aqui você define o melhor dia e hora para a sua transformação.</p>
+    </header>
+
+    <main class="content-wrapper">
+        <section class="data-hora-card">
+            
+            <div class="icone-calendario">
+                📅
+            </div>
+            
+            <h2 class="mensagem-principal">Selecione o Dia e a Hora</h2>
+            <p class="instrucao-adicional">Por favor, escolha a data e o horário disponíveis que melhor se encaixam para você.</p>
+
+            <div class="form-grupo">
+                <label for="data" class="form-label">Data:</label>
+                <input type="date" id="data" class="form-input">
+            </div>
+
+            <div class="form-grupo">
+                <label for="hora" class="form-label">Hora:</label>
+                <select id="hora" class="form-select">
+                    <option value="" disabled selected>Selecione um horário</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                </select>
+            </div>
+            
+            <div class="botoes-acao">
+                <button onclick="voltar()" class="btn-editar">
+                    ← Voltar
+                </button>
+                
+                <button onclick="proximo()" class="btn-enviar">
+                    Próximo →
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Goldenboy barbershop. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function voltar() { 
+            window.history.back(); 
+        }
+        
+        function proximo() {
+            const data = document.getElementById('data').value;
+            const hora = document.getElementById('hora').value;
+            
+            if (!data || !hora) { 
+                alert('Por favor, escolha a data e o horário para prosseguir.'); 
+                return; 
+            }
+            
+            sessionStorage.setItem('data', data);
+            sessionStorage.setItem('hora', hora);
+            
+            window.location.href = 'confirmdois.html'; // Garanta que 'confirmdois.html' é o nome correto do seu arquivo de confirmação
+        }
+
+        // Definir a data mínima para hoje
+        window.onload = function() {
+            const today = new Date();
+            let dd = today.getDate();
+            let mm = today.getMonth() + 1; // Janeiro é 0!
+            let yyyy = today.getFullYear();
+
+            if (dd < 10) dd = '0' + dd;
+            if (mm < 10) mm = '0' + mm;
+
+            const minDate = yyyy + '-' + mm + '-' + dd;
+            document.getElementById('data').setAttribute('min', minDate);
+        };
+    </script>
+</body>
+</html>

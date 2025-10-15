@@ -60,6 +60,21 @@ button {
     margin: 0 10px; /* Espaço entre os botões */
 }
 
+.btn-catalogo {
+    padding: 15px 30px;
+    background-color: #e5d392; /* Fundo do botão dourado */
+    color: #121212; /* Cor do texto do botão preta */
+    border: none;
+    border-radius: 50px; /* Botão bem arredondado */
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin: 0 10px; /* Espaço entre os botões */
+}
+
+
 /* Efeito ao passar o mouse sobre o botão */
 button:hover {
     background-color: #f0e68c; /* Dourado mais claro */
